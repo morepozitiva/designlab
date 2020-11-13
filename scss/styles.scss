@@ -25,20 +25,36 @@ body{
 .section{
    padding: 110px 0;
    text-align: center;
+   @include media(768px){
+      padding: 60px 0;
+   }
+   @include media(576px){
+      padding: 30px 0;
+   }
    &--bg{
       color: $light;
       background-color: $brand;
-      background-position: center;
+      background-position: right center;
       background-size: cover;
       background-repeat: no-repeat;
    }
    &__wrap{
       padding: 30px 120px;
+      @include media(768px){
+         padding: 30px 60px;
+      }
+      @include media(576px){
+         padding: 30px;
+      }
       &--bordered{
          border: $b-width solid $dark;
          border-top: 0;
          padding-top: 0;
          position: relative;
+         @include media(576px){
+            border: 0;
+            padding: 0;
+         }
          &:before,
          &:after{
             content: '';
@@ -46,6 +62,9 @@ body{
             top: 0;
             width: 25%;
             border-top: $b-width solid $dark;
+            @include media(576px){
+               display: none;
+            }
          }
          &:before{
             left: -$b-width;
@@ -72,6 +91,10 @@ body{
       .section__wrap--bordered & {
          transform: translate(0, -50%);
          padding: 0 20%;
+         @include media(576px){
+            transform: translate(0, 0);
+            padding: 0;
+         }
       }
    }
    &__subtitle{
@@ -85,18 +108,37 @@ header{
    display: flex;
    align-items: center;
    position: relative;
+
+   svg{
+      @include media(576px){
+         width: 50px !important;
+         height: 51px !important;
+      }
+   }
 }
 
 h1{
    font-size: 5.4rem;
+   @include media(768px){
+      font-size: 4.4rem;
+   }
+   @include media(576px){
+      font-size: 3.4rem;
+   }
 }
 
 h2{
    font-size: 3.4rem;
+   @include media(576px){
+      font-size: 2.4rem;
+   }
 }
 
 h3{
    font-size: 2rem;
+   @include media(576px){
+      font-size: 1.8rem;
+   }
 }
 
 .logo{
@@ -116,13 +158,25 @@ h3{
    left: 50%;
    transform: translate(-50%, 0);
    fill: $light;
+   @include media(576px){
+      bottom: 10px;
+   }
    @include hover {
       fill: $dark;
+   }
+   svg{
+      @include media(576px){
+         width: 17px !important;
+         height: 28px !important;
+      }
    }
 }
 
 .service{
    margin: 80px 0;
+   @include media(576px){
+      margin: 40px 0;
+   }
    &__title{
       text-transform: uppercase;
       margin: 30px 0;
@@ -154,11 +208,74 @@ h3{
 
 .copyright{
    margin-top: 110px;
+   font-weight: 400;
+   @include media(576px){
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
    &__text{
       vertical-align: middle;
       margin-left: 30px;
+      @include media(576px){
+         margin: 30px 0;
+      }
    }
    svg{
       vertical-align: middle;
+   }
+}
+
+.portfolio{
+   display: grid;
+   grid-template-columns: 30% auto 30%;
+   grid-template-rows: repeat(2, 230px);
+   grid-gap: 10px;
+   @include media(768px){
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 230px);
+   }
+   @include media(576px){
+      display: block;
+   }
+   &__item{
+      position: relative;
+      overflow: hidden;
+      @include media(576px){
+         height: 230px;
+         margin: 10px 0;
+      }
+      @include hover{
+         .portfolio__img{
+            @include tr;
+            transform: translate(-50%, -50%) scale(1.2);
+         }
+      }
+   }
+   &__img{
+      @include pCenter;
+      @include tr;
+      min-width: 100%;
+      min-height: 100%;
+      
+   }
+   &__name{
+      position: absolute;
+      bottom: 40px;
+      left: 15%;
+      right: 15%;
+      color: $light;
+      font-size: 3.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+
+      @include media(1200px){
+         left: 10%;
+         right: 10%;
+         font-size: 2.4rem;
+      }
+
    }
 }
